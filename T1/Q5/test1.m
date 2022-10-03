@@ -1,19 +1,22 @@
-clc;clear;
+clc;clear;close all;
+syms y1 a b add Q W E;
 y1=0;%中间变量
+Q=0;W=1;
+x=-25;
 
-x=-50;
-    for(n=0:1:1000)
-        if(abs((x)^n/factorial(n))>=1)
-            y1=x^n/factorial(n);
-            plot(n,y1,'-*b');
-            hold on;
-            title('e^-25每一项级数的值');
+    for n=0:1:200
+        y=(x^n)/factorial(n);
+        if(abs(y)>1e-6)
+            
+            plot(n,y,'.-b');
+            hold on;  
+            title(['e^',num2str(x),' 每一项级数的值']);
+            xlabel('蓝色是大于1e-6的数，红色是小于1e-6的数');
         else
-            y2=x^n/factorial(n);
-            plot(n,y2,'-*r');
-            hold on;
-            title('e^-25每一项级数的值');
-        end 
-        xlabel('蓝色是大数，红色是小数');
+            plot(n,y,'.-r');
+            hold on;  
+            title(['e^',num2str(x),' 每一项级数的值']);
+            xlabel('蓝色是大于1e-6的数，红色是小于1e-6的数');
+        end
     end
-%    saveas( 1, 'test_e_25.jpg');
+    saveas( 1, 'test_e^-25.jpg');
